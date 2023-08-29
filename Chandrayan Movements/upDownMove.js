@@ -1,8 +1,13 @@
-function upDown(initialDirection, turnDirection, prevDir) {
+function upDownMovement(initialDirection, turnDirection, previousDirection) {
+  // tracking previous state
   if (initialDirection !== "Up" && initialDirection !== "Down") {
-    prevDir = initialDirection;
+    previousDirection = initialDirection;
   }
-  return {direction: turnDirection === "Up" ? "Up" : "Down", prevDir: prevDir};
+  return {
+    direction: turnDirection === "Up" ? "Up" : "Down",
+    previousDirection: previousDirection,
+  };
 }
 
-module.exports = upDown;
+// exporting function
+module.exports = upDownMovement;

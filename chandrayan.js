@@ -1,39 +1,66 @@
-let forwardBackward = require("./Chandrayan Movements/forwardBackwordMove");
-let leftRight = require("./Chandrayan Movements/leftRightMove");
-let upDown = require("./Chandrayan Movements/upDownMove");
+let forwardBackwardMovement = require("./Chandrayan Movements/forwardBackwordMove");
+let leftRightTurn = require("./Chandrayan Movements/leftRightMove");
+let upDownMovement = require("./Chandrayan Movements/upDownMove");
 
 function runChandrayan3(position, direction, commands) {
   let currentPosition = position;
   let currentDirection = direction;
-  let prevDir = null;
+  let previousDirection = null;
 
-  for (let index = 0; index < commands.length; index++) {
-    switch (commands[index]) {
+  // taking each command at a time
+  for (let i = 0; i < commands.length; i++) {
+    switch (commands[i]) {
+      // forward movement
       case "f":
-        currentPosition = forwardBackward(currentPosition, currentDirection, 1);
+        currentPosition = forwardBackwardMovement(
+          currentPosition,
+          currentDirection,
+          1
+        );
         break;
+      // backward movement
       case "b":
-        currentPosition = forwardBackward(
+        currentPosition = forwardBackwardMovement(
           currentPosition,
           currentDirection,
           -1
         );
         break;
+      // right turn
       case "r":
-        currentDirection = leftRight(currentDirection, "right", prevDir);
+        currentDirection = leftRightTurn(
+          currentDirection,
+          "right",
+          previousDirection
+        );
         break;
+      // left turn
       case "l":
-        currentDirection = leftRight(currentDirection, "left", prevDir);
+        currentDirection = leftRightTurn(
+          currentDirection,
+          "left",
+          previousDirection
+        );
         break;
+      // upward movement
       case "u":
-        let resultUp = upDown(currentDirection, "Up", prevDir);
+        let resultUp = upDownMovement(
+          currentDirection,
+          "Up",
+          previousDirection
+        );
         currentDirection = resultUp.direction;
-        prevDir = resultUp.prevDir;
+        previousDirection = resultUp.previousDirection;
         break;
+      // backward movement
       case "d":
-        let resultDown = upDown(currentDirection, "Down", prevDir);
+        let resultDown = upDownMovement(
+          currentDirection,
+          "Down",
+          previousDirection
+        );
         currentDirection = resultDown.direction;
-        prevDir = resultDown.prevDir;
+        previousDirection = resultDown.previousDirection;
         break;
 
       default:
@@ -44,6 +71,7 @@ function runChandrayan3(position, direction, commands) {
   return { position: currentPosition, direction: currentDirection };
 }
 
+// this part is to run code in nodejs
 function run() {
   const initialPosition = [0, 0, 0];
   const initialDirection = "N";
@@ -56,4 +84,5 @@ function run() {
 }
 run();
 
+// exporting function
 module.exports = runChandrayan3;
