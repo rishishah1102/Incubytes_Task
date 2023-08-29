@@ -1,10 +1,13 @@
-function leftRight(currentDirection, turnDirection, prevDir) {
+function leftRightTurn(currentDirection, turnDirection, previousDirection) {
   const directions = ["N", "E", "S", "W"];
+
+  // to find left or right of current direction
   const currentIndex =
     currentDirection === "Up" || currentDirection === "Down"
-      ? directions.indexOf(prevDir)
+      ? directions.indexOf(previousDirection)
       : directions.indexOf(currentDirection);
 
+  let newIndex;
   if (currentIndex === 0 && turnDirection === "left") {
     newIndex = 3;
   } else if (currentIndex === 3 && turnDirection === "right") {
@@ -17,4 +20,5 @@ function leftRight(currentDirection, turnDirection, prevDir) {
   return directions[newIndex];
 }
 
-module.exports = leftRight;
+// exporting function
+module.exports = leftRightTurn;

@@ -1,8 +1,9 @@
-const forwardBackward = require("./Chandrayan Movements/forwardBackwordMove");
-let leftRight = require("./Chandrayan Movements/leftRightMove");
-let upDown = require("./Chandrayan Movements/upDownMove");
+let forwardBackwardMovement = require("./Chandrayan Movements/forwardBackwordMove");
+let leftRightTurn = require("./Chandrayan Movements/leftRightMove");
+let upDownMovement = require("./Chandrayan Movements/upDownMove");
 const runChandrayan3 = require("./chandrayan");
 
+// all the unit test related to chandrayan-3
 describe("Chandrayaan 3 Commands", () => {
   const initialPosition = [0, 0, 0];
   const initialDirection = "N";
@@ -13,12 +14,13 @@ describe("Chandrayaan 3 Commands", () => {
     const expectedFinalPosition = [0, 1, 0];
 
     // calling upward movement function
-    let forwardBackwardResult = forwardBackward(
+    let forwardBackwardResult = forwardBackwardMovement(
       initialPosition,
       initialDirection,
       1
     );
 
+    // comparison
     expect(forwardBackwardResult).toEqual(expectedFinalPosition);
   });
 
@@ -27,12 +29,13 @@ describe("Chandrayaan 3 Commands", () => {
     const expectedFinalPosition = [0, -1, 0];
 
     // calling backward movement function
-    let forwardBackwardResult = forwardBackward(
+    let forwardBackwardResult = forwardBackwardMovement(
       initialPosition,
       initialDirection,
       -1
     );
 
+    // comparison
     expect(forwardBackwardResult).toEqual(expectedFinalPosition);
   });
 
@@ -41,8 +44,9 @@ describe("Chandrayaan 3 Commands", () => {
     const expectedDirection = "E";
 
     // Calling left right function
-    const leftRightResult = leftRight(initialDirection, "right", null);
+    const leftRightResult = leftRightTurn(initialDirection, "right", null);
 
+    // comparison
     expect(leftRightResult).toEqual(expectedDirection);
   });
 
@@ -51,8 +55,9 @@ describe("Chandrayaan 3 Commands", () => {
     const expectedDirection = "Down";
 
     // calling upDown function
-    const upDownResult = upDown(initialDirection, "Down", null);
+    const upDownResult = upDownMovement(initialDirection, "Down", null);
 
+    // comparison
     expect(upDownResult.direction).toEqual(expectedDirection);
   });
 
@@ -60,8 +65,11 @@ describe("Chandrayaan 3 Commands", () => {
   test("chandrayan3 landed successfully", () => {
     const expectedDirection = "N";
     const expectedFinalPosition = [0, 1, -1];
+
+    // calling chandrayan function
     const result = runChandrayan3(initialPosition, initialDirection, commands);
 
+    // comparison
     expect(result.position).toEqual(expectedFinalPosition);
     expect(result.direction).toBe(expectedDirection);
   });
