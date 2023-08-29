@@ -46,12 +46,49 @@ function upDown(initialDirection, turnDirection) {
   return turnDirection === "Up" ? "Up" : "Down";
 }
 
+function runChandrayan3(position, direction, commands) {
+  let currentPosition = position;
+  let currentDirection = direction;
+
+  for (let index = 0; index < commands.length; index++) {
+    switch (commands[index]) {
+      case "f":
+        currentPosition = forwardBackward(currentPosition, currentDirection, 1);
+        break;
+      case "b":
+        currentPosition = forwardBackward(
+          currentPosition,
+          currentDirection,
+          -1
+        );
+        break;
+      case "r":
+        currentDirection = leftRight(currentDirection, "right");
+        break;
+      case "l":
+        currentDirection = leftRight(currentDirection, "left");
+        break;
+      case "u":
+        currentDirection = upDown(currentDirection, "Up");
+        break;
+      case "d":
+        currentDirection = upDown(currentDirection, "Down");
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return { position: currentPosition, direction: currentDirection };
+}
+
 describe("Chandrayaan 3 Commands", () => {
   const initialPosition = [0, 0, 0];
-  const initialDirection = "W";
+  const initialDirection = "N";
 
   test("forward execution", () => {
-    const expectedFinalPosition = [-1, 0, 0];
+    const expectedFinalPosition = [0, 1, 0];
 
     let forwardBackwardResult = forwardBackward(
       initialPosition,
@@ -63,7 +100,7 @@ describe("Chandrayaan 3 Commands", () => {
   });
 
   test("backward execution", () => {
-    const expectedFinalPosition = [1, 0, 0];
+    const expectedFinalPosition = [0, -1, 0];
 
     let forwardBackwardResult = forwardBackward(
       initialPosition,
@@ -75,7 +112,7 @@ describe("Chandrayaan 3 Commands", () => {
   });
 
   test("left right execution", () => {
-    const expectedDirection = "N";
+    const expectedDirection = "E";
 
     const leftRightResult = leftRight(initialDirection, "right");
 
@@ -83,10 +120,20 @@ describe("Chandrayaan 3 Commands", () => {
   });
 
   test("up down execution", () => {
-    const expectedDirection = "Up";
+    const expectedDirection = "Down";
 
-    const upDownResult = upDown(initialDirection, "Up");
+    const upDownResult = upDown(initialDirection, "Down");
 
     expect(upDownResult).toEqual(expectedDirection);
+  });
+
+  const commands = ["f", "r", "u", "b", "d", "l"];
+  test("chandrayan3 landed successfully", () => {
+    const expectedDirection = "N";
+    const expectedFinalPosition = [0, 1, -1];
+    const result = runChandrayan3(initialPosition, initialDirection, commands);
+
+    expect(result.position).toEqual(expectedFinalPosition);
+    expect(result.direction).toBe(expectedDirection);
   });
 });
