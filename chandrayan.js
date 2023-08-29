@@ -5,7 +5,7 @@ let upDownMovement = require("./Chandrayan Movements/upDownMove");
 function runChandrayan3(position, direction, commands) {
   let currentPosition = position;
   let currentDirection = direction;
-  let previousDirection = null;
+  let previousDirection = direction;
 
   // taking each command at a time
   for (let i = 0; i < commands.length; i++) {
