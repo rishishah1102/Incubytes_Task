@@ -44,12 +44,12 @@ Ensure that you have the following prerequisites in place:
 ```bash
   https://github.com/rishishah1102/Incubytes_Task.git
 ```
-2. Clone my repository
+2. Navigate to Incubytes_Task directory
 
 ```bash
   cd Incubytes_Task
 ```
-2. Clone my repository
+2. Install necessary dependencies
 
 ```bash
   npm i
