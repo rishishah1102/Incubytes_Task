@@ -44,12 +44,12 @@ Ensure that you have the following prerequisites in place:
 ```bash
   https://github.com/rishishah1102/Incubytes_Task.git
 ```
-2. Navigate to Incubytes_Task directory
+2. Clone my repository
 
 ```bash
   cd Incubytes_Task
 ```
-2. Install the necessary dependencies
+2. Clone my repository
 
 ```bash
   npm i
@@ -63,6 +63,15 @@ Ensure that you have the following prerequisites in place:
   node chandrayan.js
 ```
 2. To change commands, go to chandrayan.js and inside run function change the commands array.
+
+## Testing
+
+1. Run spacecraft.test.js
+
+```bash
+  npm run test
+```
+
 ## Example
 
 ```
@@ -84,3 +93,4 @@ Here's an example of how to use the program with a starting position of (0, 0, 0
 ## Authors
 
 - [Rishabh Shah](https://github.com/rishishah1102)
+
